@@ -1,7 +1,10 @@
 import userRoutes from './src/routes/user.router';
 import clubRoutes from './src/routes/club.router';
-import { sequelize } from './src/config/database'; 
+import playerRoutes from './src/routes/player.router';
+import matchRouter from './src/routes/match.router';
+import participationRouter from './src/routes/participation.router';
 
+import { sequelize } from './src/config/database'; 
 import express from 'express';
 import axios from 'axios';
 
@@ -24,12 +27,11 @@ sequelize.sync({alter: true}).then(() => {
 app.use(express.json());
 app.use('/api', userRoutes);
 app.use('/api', clubRoutes);
+app.use('/api', playerRoutes);
+app.use('/api', matchRouter);
+app.use('/api', participationRouter);
 
-
-//test de conexion a la base de datos
-
-
-app.get('/data', async (req: any, res: any) => {
+app.get('/test', async (req: any, res: any) => {
     try {
         const response = await axios.get('https://swapi.dev/api/people/1');
         res.send(response.data);
