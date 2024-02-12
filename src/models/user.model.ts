@@ -1,35 +1,75 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+import { Model, DataTypes } from 'sequelize';
+import { sequelize } from '../config/database';
 
-const userSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        required: true,
-        unique: true
+class User extends Model {
+    public id!: number;
+    public name!: string;
+    public surname!: string;
+    public user!: string;
+    public pass!: string;
+    public readonly createdAt!: Date;
+    public readonly updatedAt!: Date;
+    public age!: number;
+    public email!: string; 
+    public isActive!: boolean;
+}
+
+User.init(
+    {
+        id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            autoIncrement: true,
+            primaryKey: true,
+          },
+          name: {
+            type: new DataTypes.STRING(128),
+            allowNull: false,
+          },
+          surname: {
+            type: new DataTypes.STRING(128),
+            allowNull: false,
+          },
+          user: {
+            type: new DataTypes.STRING(128),
+            allowNull: false,
+            unique: true,
+          },
+          pass: {
+            type: new DataTypes.STRING(128),
+            allowNull: false,
+          },
+          createdAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+          },
+          updatedAt: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+          },
+          age: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+          },
+          email: {
+            type: DataTypes.STRING(128),
+            allowNull: false,
+            unique: true, 
+            validate: {
+              isEmail: true,
+            },
+          },
+          isActive: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true, // Opcionalmente, los usuarios pueden estar activos por defecto
+          },
     },
-    password: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
+    {
+        sequelize,
+        tableName: 'users',
     }
-});
+);
 
-// Hash the password before saving
-userSchema.pre('save', async function(this: any, next: any) {
-    try {
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(this.password, salt);
-        this.password = hashedPassword;
-        next();
-    } catch (error) {
-        next(error);
-    }
-});
-
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+export default User;
