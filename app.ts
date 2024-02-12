@@ -1,6 +1,10 @@
 import userRoutes from './src/routes/user.router';
-import { sequelize, test } from './src/config/database'; 
+import clubRoutes from './src/routes/club.router';
+import playerRoutes from './src/routes/player.router';
+import matchRouter from './src/routes/match.router';
+import participationRouter from './src/routes/participation.router';
 
+import { sequelize } from './src/config/database'; 
 import express from 'express';
 import axios from 'axios';
 
@@ -10,13 +14,11 @@ const port = 3000;
 
 console.log('El servidor esta inciando....................');
 
-test();
-
 sequelize.authenticate()
   .then(() => console.log('Conexión a la base de datos establecida'))
   .catch((error: any) => console.error('No se pudo conectar a la base de datos:', error));
 
-sequelize.sync().then(() => {
+sequelize.sync({alter: true}).then(() => {
     console.log('Conexión a la base de datos establecida y modelos sincronizados');
   }).catch((error) => {
     console.error('No se pudo establecer conexión con la base de datos:', error);
@@ -24,12 +26,12 @@ sequelize.sync().then(() => {
 
 app.use(express.json());
 app.use('/api', userRoutes);
+app.use('/api', clubRoutes);
+app.use('/api', playerRoutes);
+app.use('/api', matchRouter);
+app.use('/api', participationRouter);
 
-
-//test de conexion a la base de datos
-
-
-app.get('/data', async (req: any, res: any) => {
+app.get('/test', async (req: any, res: any) => {
     try {
         const response = await axios.get('https://swapi.dev/api/people/1');
         res.send(response.data);
