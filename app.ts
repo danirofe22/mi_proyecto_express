@@ -1,5 +1,6 @@
 import userRoutes from './src/routes/user.router';
-import { sequelize, test } from './src/config/database'; 
+import clubRoutes from './src/routes/club.router';
+import { sequelize } from './src/config/database'; 
 
 import express from 'express';
 import axios from 'axios';
@@ -10,13 +11,11 @@ const port = 3000;
 
 console.log('El servidor esta inciando....................');
 
-test();
-
 sequelize.authenticate()
   .then(() => console.log('Conexión a la base de datos establecida'))
   .catch((error: any) => console.error('No se pudo conectar a la base de datos:', error));
 
-sequelize.sync().then(() => {
+sequelize.sync({alter: true}).then(() => {
     console.log('Conexión a la base de datos establecida y modelos sincronizados');
   }).catch((error) => {
     console.error('No se pudo establecer conexión con la base de datos:', error);
@@ -24,6 +23,7 @@ sequelize.sync().then(() => {
 
 app.use(express.json());
 app.use('/api', userRoutes);
+app.use('/api', clubRoutes);
 
 
 //test de conexion a la base de datos
