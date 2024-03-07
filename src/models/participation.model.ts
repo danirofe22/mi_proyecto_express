@@ -29,7 +29,18 @@ Participation.init({
     type: DataTypes.INTEGER.UNSIGNED,
     allowNull: false,
     defaultValue: 0,
-  }
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+    onUpdate: sequelize.literal('CURRENT_TIMESTAMP').toString(), // Add this line to update the value on every update
+  },
 }, {
   sequelize,
   modelName: 'Participation',

@@ -37,12 +37,23 @@ Match.init({
   notes: {
     type: DataTypes.TEXT,
     allowNull: true, // Notas adicionales sobre el partido
-  }
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+    onUpdate: sequelize.literal('CURRENT_TIMESTAMP').toString(), // Add this line to update the value on every update
+  },
 }, {
   sequelize,
   modelName: 'Match',
   tableName: 'matches', // Asegúrate de que el nombre de la tabla coincida con tu esquema de base de datos
-  timestamps: true, // Habilita los campos `createdAt` y `updatedAt` automáticos
+  timestamps: false, // Habilita los campos `createdAt` y `updatedAt` automáticos
 });
 
 export default Match;

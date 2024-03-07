@@ -22,10 +22,6 @@ Club.init({
       key: 'id',
     }
   },
-  creation_date: {
-    type: DataTypes.DATEONLY,
-    allowNull: false,
-  },
   description: {
     type: DataTypes.TEXT,
     allowNull: true, // Permitir que la descripción sea opcional
@@ -38,7 +34,8 @@ Club.init({
   sequelize,
   modelName: 'Club',
   tableName: 'clubs', // Asegúrate de que el nombre de la tabla coincida con tu esquema de base de datos
-  timestamps: false, // Desactiva los campos `createdAt` y `updatedAt` automáticos si no los necesitas
+  //TODO: Agregar el campo `timestamps` con el valor `true`
+  timestamps: false, // Habilita los campos `createdAt` y `updatedAt` automáticos
 });
 
 export default Club;

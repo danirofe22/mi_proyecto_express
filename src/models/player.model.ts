@@ -50,7 +50,18 @@ Player.init({
       model: 'clubs', // Asume que ya tienes un modelo 'Club'
       key: 'id',
     }
-  }
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+    onUpdate: sequelize.literal('CURRENT_TIMESTAMP').toString(), // Add this line to update the value on every update
+  },
 }, {
   sequelize,
   modelName: 'Player',
