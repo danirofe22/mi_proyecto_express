@@ -1,12 +1,13 @@
 {
-  "name": "firts_express_app",
+  "name": "penas-app",
   "version": "1.0.0",
-  "description": "Mi primer proyecto con Express",
-  "main": "api.js",
+  "description": "Peñas aplication",
+  "main": "app.ts",
   "scripts": {
     "start": "ts-node app.ts",
     "build": "tsc",
-    "dev": "nodemon app.ts"
+    "dev": "nodemon app.ts",
+    "debug": "ts-node --inspect895642812320.80.122965852 app.ts"
   },
   "author": "@dani.rofe",
   "license": "ISC",
@@ -14,8 +15,10 @@
     "@types/express": "^4.17.21",
     "axios": "^1.6.2",
     "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
     "mysql": "^2.18.1",
     "mysql2": "^3.9.1",
@@ -24,6 +27,7 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/mysql": "^2.15.25",
     "@types/node": "^20.11.17",
     "@types/sequelize": "^4.28.20"

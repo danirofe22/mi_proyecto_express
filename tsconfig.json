@@ -5,7 +5,8 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "esModuleInterop": true,
-    "strict": true
+    "strict": true,
+    "sourceMap": true, // BEGIN: Added debug mode
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
