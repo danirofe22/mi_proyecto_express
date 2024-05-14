@@ -3,7 +3,7 @@ import express from 'express';
 import AuthMiddleware from './src/middlewares/auth.middleware';
 import { sequelizeSync, sequelizeAuth } from './src/utils/sequelize.utils';
 import authRoutes from './src/routes/auth.router';
-import apiRouter from './src/routes/routes';
+import apiRouter from './src/routes/main.routes';
 
 const app = express();
 const port = 3000;

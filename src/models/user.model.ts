@@ -27,10 +27,9 @@ User.init(
             type: new DataTypes.STRING(128),
             allowNull: false,
           },
-          user: {
+          username: {
             type: new DataTypes.STRING(128),
             allowNull: false,
-            unique: true,
           },
           pass: {
             type: new DataTypes.STRING(128),

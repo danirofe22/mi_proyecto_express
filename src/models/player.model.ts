@@ -47,7 +47,7 @@ Player.init({
     type: DataTypes.INTEGER.UNSIGNED,
     allowNull: true,
     references: {
-      model: 'clubs', // Asume que ya tienes un modelo 'Club'
+      model: 'clubs',
       key: 'id',
     }
   },

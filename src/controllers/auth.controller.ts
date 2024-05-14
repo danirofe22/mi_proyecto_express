@@ -4,14 +4,14 @@ import jwt from 'jsonwebtoken';
 
 class AuthController {
     async login(req: Request, res: Response) {
-        const { user, password } = req.body;
+        const { username, password } = req.body;
 
-        if (!user || !password) {
+        if (!username || !password) {
             return res.status(400).json({ message: 'User and password are required' });
         }
 
         try {
-            const userDetails = await User.findOne({ where: { user } });
+            const userDetails = await User.findOne({ where: { username } });
             
             if (!userDetails) {
                 return res.status(401).json({ message: 'Invalid credentials' });
