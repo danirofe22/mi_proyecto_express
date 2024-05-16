@@ -1,9 +1,9 @@
-import { sequelize } from './src/config/database'; 
+import { sequelize } from './config/database'; 
 import express from 'express';
-import AuthMiddleware from './src/middlewares/auth.middleware';
-import { sequelizeSync, sequelizeAuth } from './src/utils/sequelize.utils';
-import authRoutes from './src/routes/auth.router';
-import apiRouter from './src/routes/main.routes';
+import AuthMiddleware from './middlewares/auth.middleware';
+import { sequelizeSync, sequelizeAuth } from './utils/sequelize.utils';
+import authRoutes from './routes/auth.router';
+import apiRouter from './routes/main.routes';
 
 const app = express();
 const port = 3000;

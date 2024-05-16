@@ -18,3 +18,6 @@ dist/
 # IDE files
 .vscode/
 .idea/
+
+# distribution files
+dist/

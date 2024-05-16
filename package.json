@@ -2,12 +2,12 @@
   "name": "penas-app",
   "version": "1.0.0",
   "description": "Peñas aplication",
-  "main": "app.ts",
+  "main": "src/app.ts",
   "scripts": {
-    "start": "ts-node app.ts",
+    "start": "ts-node src/app.ts",
     "build": "tsc",
-    "dev": "nodemon app.ts",
-    "debug": "ts-node --inspect895642812320.80.122965852 app.ts"
+    "dev": "nodemon src/app.ts",
+    "debug": "node --inspect dist/app.js"
   },
   "author": "@dani.rofe",
   "license": "ISC",
