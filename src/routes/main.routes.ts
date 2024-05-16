@@ -4,6 +4,8 @@ import playerRoutes from './player.router';
 import matchRoutes from './match.router';
 import participationRoutes from './participation.router';
 import permissionsRoutes from './permission.router';
+import RolePermissionRoutes from './role-permission.router';
+import RoleRoutes from './role.router';
 import { Router } from 'express';
 
 const apiRouter = Router();
@@ -15,5 +17,7 @@ apiRouter.use('/api', playerRoutes);
 apiRouter.use('/api', matchRoutes);
 apiRouter.use('/api', participationRoutes);
 apiRouter.use('/api', permissionsRoutes);
+apiRouter.use('/api', RolePermissionRoutes);
+apiRouter.get('/api', RoleRoutes);
 
 export default apiRouter;
